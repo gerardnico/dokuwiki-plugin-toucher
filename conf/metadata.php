@@ -5,4 +5,4 @@
  * @author Andriy Nych <nych.andriy@gmail.com>
  */
 
-$meta['admin_only'] = array('onoff');
+$meta[helper_plugin_toucher::CONF_ADMIN_ONLY] = array('onoff');
