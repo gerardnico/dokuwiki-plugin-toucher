@@ -3,7 +3,10 @@
 
 class helper_plugin_toucher extends DokuWiki_Plugin
 {
+
+
     const CONF_ADMIN_ONLY = 'admin_only';
+    const PLUGIN_NAME = 'toucher';
 
     /**
      * Touching the configuration file will reset the cache

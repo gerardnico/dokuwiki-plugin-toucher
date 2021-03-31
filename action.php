@@ -46,16 +46,16 @@ class action_plugin_toucher extends DokuWiki_Action_Plugin
 
         if ($toucher->canTouch() !== true) {
             http_status(403);
-            exit;
+            $message = "You can't touch";
         } else {
 
             $toucher->touchLocalConfFile();
-            $jsonArray = array("message" => "The configuration file was touched. The cache is now empty.");
-            echo json_encode($jsonArray);
+            $message = "The configuration file was touched. The cache is now stale.";
             http_status(200);
-            header('Content-Type: application/json');
-
         }
+        $jsonArray = array("message" => $message);
+        header('Content-Type: application/json');
+        echo json_encode($jsonArray);
 
 
     }

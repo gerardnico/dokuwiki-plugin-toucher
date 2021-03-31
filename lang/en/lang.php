@@ -6,6 +6,6 @@
  */
 
 $lang['menu'] = 'Touch configuration files';
-
+$lang['inprogress'] = '(touch pending)';
 
 //Setup VIM: ex: et ts=4 :
