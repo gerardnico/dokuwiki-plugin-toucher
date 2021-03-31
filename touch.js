@@ -15,10 +15,21 @@ if (JSINFO) {
                     call: 'plugin_toucher'
                 },
                 // Display feedback
+                // https://api.jqueryui.com/dialog/
                 function (result) {
-                    let newDiv = jQuery(document.createElement('div'));
-                    newDiv.html(result.message);
-                    newDiv.dialog();
+                    let newDialogElement = jQuery(document.createElement('div'));
+                    newDialogElement.html(result.message);
+
+                    newDialogElement.dialog({
+                        dialogClass: "touch-dialog",
+                        closeOnEscape: true,
+                        modal: true
+                    });
+
+                    jQuery(document).bind('click', function () {
+                        newDialogElement.dialog("close");
+                    });
+
                 }
             );
 
