@@ -23,11 +23,21 @@ if (JSINFO) {
                     newDialogElement.dialog({
                         dialogClass: "touch-dialog",
                         closeOnEscape: true,
-                        modal: true
+                        modal: true,
+                        open: function() {
+                            // close it after 2 seconds (toast)
+                            let dialogElement = jQuery(this);
+                            setTimeout(function() {
+                                dialogElement.dialog('close');
+                                dialogElement.remove();
+                            }, 2000);
+                        }
                     });
 
+                    // Close it if the user click
                     jQuery(document).bind('click', function () {
                         newDialogElement.dialog("close");
+                        newDialogElement.remove();
                     });
 
                 }
