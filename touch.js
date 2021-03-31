@@ -17,16 +17,15 @@ if (JSINFO) {
                 // Display feedback
                 // https://api.jqueryui.com/dialog/
                 function (result) {
-                    let newDialogElement = jQuery(document.createElement('div'));
-                    newDialogElement.html(result.message);
+                    let dialogElement = jQuery(document.createElement('div'));
+                    dialogElement.html(result.message);
 
-                    newDialogElement.dialog({
+                    dialogElement.dialog({
                         dialogClass: "touch-dialog",
                         closeOnEscape: true,
                         modal: true,
                         open: function() {
                             // close it after 2 seconds (toast)
-                            let dialogElement = jQuery(this);
                             setTimeout(function() {
                                 dialogElement.dialog('close');
                                 dialogElement.remove();
@@ -36,8 +35,8 @@ if (JSINFO) {
 
                     // Close it if the user click
                     jQuery(document).bind('click', function () {
-                        newDialogElement.dialog("close");
-                        newDialogElement.remove();
+                        dialogElement.dialog("close");
+                        dialogElement.remove();
                     });
 
                 }
