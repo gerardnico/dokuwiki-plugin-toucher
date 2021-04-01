@@ -28,6 +28,7 @@ if (JSINFO) {
                         if (jElement.parent().length >0) {
                             jElement.dialog('close');
                             jElement.remove();
+                            jQuery( document.activeElement ).blur();
                         }
                     }
 
