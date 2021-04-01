@@ -20,6 +20,17 @@ if (JSINFO) {
                     let dialogElement = jQuery(document.createElement('div'));
                     dialogElement.html(result.message);
 
+                    /**
+                     *
+                     * @param {any | JQuery} jElement
+                     */
+                    let remove = function(jElement){
+                        if (jElement.parent().length >0) {
+                            jElement.dialog('close');
+                            jElement.remove();
+                        }
+                    }
+
                     dialogElement.dialog({
                         dialogClass: "touch-dialog",
                         closeOnEscape: true,
@@ -27,16 +38,14 @@ if (JSINFO) {
                         open: function() {
                             // close it after 2 seconds (toast)
                             setTimeout(function() {
-                                dialogElement.dialog('close');
-                                dialogElement.remove();
+                                remove(dialogElement)
                             }, 2000);
                         }
                     });
 
                     // Close it if the user click
                     jQuery(document).bind('click', function () {
-                        dialogElement.dialog("close");
-                        dialogElement.remove();
+                        remove(dialogElement)
                     });
 
                 }
