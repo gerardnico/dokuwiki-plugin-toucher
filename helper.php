@@ -11,8 +11,21 @@ class helper_plugin_toucher extends DokuWiki_Plugin
     /**
      * Touching the configuration file will reset the cache
      */
-    function touchLocalConfFile() {
-        touch(DOKU_CONF."local.php");
+    function touchLocalConfFile()
+    {
+
+        touch(DOKU_CONF . "local.php");
+
+        $dir = new DirectoryIterator(DOKU_PLUGIN);
+        foreach ($dir as $file) {
+            if ($file->isDir() && !$file->isDot()) {
+                $infoPlugin =  $file->getPathname()."/plugin.info.txt";
+                if (file_exists($infoPlugin)){
+                    touch($infoPlugin);
+                }
+            }
+        }
+
     }
 
     /**
@@ -28,7 +41,7 @@ class helper_plugin_toucher extends DokuWiki_Plugin
         $canTouch = true;
         if ($this->getConf(self::CONF_ADMIN_ONLY)) {
             global $USERINFO;
-            if( !auth_isadmin($_SERVER['REMOTE_USER'], $USERINFO['grps'])) {
+            if (!auth_isadmin($_SERVER['REMOTE_USER'], $USERINFO['grps'])) {
                 return "Only admin can touch";
             }
         }
